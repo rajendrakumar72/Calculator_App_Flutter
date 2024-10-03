@@ -1,3 +1,4 @@
+import 'package:calculator_app/calculation_util.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:math_expressions/math_expressions.dart';
 
@@ -40,7 +41,7 @@ class CalculatorBloc extends Bloc<CalculatorEvent, String> {
         emit('0');
       } else if (input == '=') {
         try {
-          String result = _calculator(currentValue);
+          String result = CalculatorUtils.calculator(currentValue);
           emit(result);
         } catch (e) {
           emit('Error');
@@ -69,7 +70,7 @@ class CalculatorBloc extends Bloc<CalculatorEvent, String> {
 
     on<EqualPressed>((event, emit) {
       try {
-        String result = _calculator(state);
+        String result = CalculatorUtils.calculator(state);
         emit(result);
       } catch (e) {
         emit('Error');
@@ -77,13 +78,13 @@ class CalculatorBloc extends Bloc<CalculatorEvent, String> {
     });
   }
 
-  // Function to evaluate mathematical expressions
-  String _calculator(String expression) {
-    expression = expression.replaceAll('%', '* 0.01');
-    Parser p = Parser();
-    Expression exp = p.parse(expression);
-    ContextModel cm = ContextModel();
-    double eval = exp.evaluate(EvaluationType.REAL, cm);
-    return eval.toString();
-  }
+  // // Function to evaluate mathematical expressions
+  // String _calculator(String expression) {
+  //   expression = expression.replaceAll('%', '* 0.01');
+  //   Parser p = Parser();
+  //   Expression exp = p.parse(expression);
+  //   ContextModel cm = ContextModel();
+  //   double eval = exp.evaluate(EvaluationType.REAL, cm);
+  //   return eval.toString();
+  // }
 }

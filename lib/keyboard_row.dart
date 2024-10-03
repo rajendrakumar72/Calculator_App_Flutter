@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc_calculator.dart';
 
 class KeyBoardRow extends StatelessWidget {
-  const KeyBoardRow({super.key, required this.keys, required this.bloc});
+  const KeyBoardRow({super.key, required this.keys});
 
   final List<String> keys;
-  final CalculatorBloc bloc;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +31,13 @@ class KeyBoardRow extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     if (key == 'AC') {
-                      bloc.add(AllClearPressed());
+                      BlocProvider.of<CalculatorBloc>(context).add(AllClearPressed());
                     } else if (key == 'C') {
-                      bloc.add(ClearPressed());
+                      BlocProvider.of<CalculatorBloc>(context).add(ClearPressed());
                     } else if (key == '=') {
-                      bloc.add(EqualPressed());
+                      BlocProvider.of<CalculatorBloc>(context).add(EqualPressed());
                     } else {
-                      bloc.add(InputPressed(key));
+                      BlocProvider.of<CalculatorBloc>(context).add(InputPressed(key));
                     }
                   },
                   borderRadius: BorderRadius.circular(8),

@@ -9,7 +9,6 @@ class CalculatorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CalculatorBloc bloc=BlocProvider.of<CalculatorBloc>(context);
 
     return Column(
       children: [
@@ -29,13 +28,13 @@ class CalculatorView extends StatelessWidget {
         Expanded(flex: 3,
             child: Container(
               padding: const EdgeInsets.all(8),
-              child: Column(
+              child: const Column(
                 children: [
-                  KeyBoardRow(keys: ['C','AC','%','/'], bloc: bloc),
-                  KeyBoardRow(keys: ['7','8','9','*'], bloc: bloc),
-                  KeyBoardRow(keys: ['4','5','6','-'], bloc: bloc),
-                  KeyBoardRow(keys: ['1','2','3','+'], bloc: bloc),
-                  KeyBoardRow(keys: ['00','0','.','='], bloc: bloc),
+                  KeyBoardRow(keys: ['C','AC','%','/']),
+                  KeyBoardRow(keys: ['7','8','9','*']),
+                  KeyBoardRow(keys: ['4','5','6','-']),
+                  KeyBoardRow(keys: ['1','2','3','+']),
+                  KeyBoardRow(keys: ['00','0','.','=']),
                 ],
               ),
             ),
